@@ -109,6 +109,61 @@ type CursorQueryBuilderArgs = {
 - Search: `buildSearchQuery`, `buildNestedSearchQuery`, `buildExactSearch`, `buildPrefixSearch`
 - Filters: `buildFilters`, `buildDateRangeFilter`, `buildNumberRangeFilter`, `buildRelationFilters`, `buildNotFilters`, `combineFilters`, `combineFiltersWithOr`
 
+### Filter Types
+Below are the supported filter styles for the `filters` option. You can mix these in the same object.
+
+Exact Match
+```ts
+filters: {
+  role: "ADMIN",
+  isActive: true,
+}
+```
+
+Array (IN Query)
+```ts
+filters: {
+  role: ["ADMIN", "USER", "PRO"],
+  status: ["CREATED", "PAID"],
+}
+```
+
+Date Range
+```ts
+filters: {
+  createdAt: {
+    from: new Date("2025-01-01"),
+    to: new Date("2025-12-31"),
+  },
+}
+```
+
+Number Range
+```ts
+filters: {
+  amount: {
+    from: 10000, // 100 INR
+    to: 100000, // 1000 INR
+  },
+}
+```
+
+Boolean
+```ts
+filters: {
+  isActive: true,
+  isForced: false,
+}
+```
+
+Enum
+```ts
+filters: {
+  status: "PAID",
+  purpose: "EVENT",
+}
+```
+
 ## Examples
 
 ### Search and Filters
