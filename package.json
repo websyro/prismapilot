@@ -41,6 +41,8 @@
   },
   "keywords": [
     "prisma",
+    "prismapilot",
+    "websyro",
     "query-builder",
     "pagination",
     "cursor-pagination",
