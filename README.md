@@ -10,9 +10,26 @@ A generic, schema-agnostic query builder for Prisma. It provides pagination, sea
 - Optional Zod validation schemas
 - Advanced utilities in a separate module
 
-## Install
+## Installation
+
+### NPM
 ```bash
 npm install @websyro/prismapilot
+```
+
+### Yarn
+```bash
+yarn add @websyro/prismapilot
+```
+
+### PNPM
+```bash
+pnpm add @websyro/prismapilot
+```
+
+### Bun
+```bash
+bun add @websyro/prismapilot
 ```
 
 ## Quick Start
