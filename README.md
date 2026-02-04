@@ -803,26 +803,107 @@ export async function GET(request: NextRequest) {
 ```
 
 ## Domain-Specific Examples
-This package stays generic by default. If you need role-based filters or model-specific schemas, use the example files in the repo:
-- `src/filters.examples.ts`
-- `src/validation.examples.ts`
+These examples are **not exported** by the package. Copy and adapt them to your own models and auth system.
 
-These are not exported by the package. Copy and adapt them to your own models and auth system.
+### Role-Based Filters (Example Helper)
+```ts
+export type RoleBasedAccess = {
+  role?: string;
+  userId?: string;
+  applyRoleFilter?: boolean;
+};
 
-## Scripts
-```bash
-npm run test
-npm run build
-npm publish --access public
+export function buildRoleBasedFilters(
+  role?: string,
+  userId?: string
+): Record<string, any> {
+  const filters: Record<string, any> = {};
+
+  if (role === "ADMIN") return filters;
+  if (role === "USER" && userId) filters.userId = userId;
+  if (role === "GUEST") filters.isActive = true;
+
+  return filters;
+}
 ```
 
+Usage example:
+```ts
+const roleFilters = buildRoleBasedFilters(currentUser.role, currentUser.id);
+
+const result = await queryBuilder({
+  model: prisma.order,
+  page: 1,
+  limit: 20,
+  filters: {
+    status: "PAID",
+    ...roleFilters,
+  },
+});
+```
+
+### Zod Schemas (Example)
+```ts
+import { z } from "zod";
+import { paginationSchema, sortSchema, dateRangeSchema, numberRangeSchema } from "@websyro/prismapilot";
+
+export const userQuerySchema = z.intersection(
+  z.intersection(paginationSchema, sortSchema),
+  z.object({
+    search: z.string().optional(),
+    role: z.enum(["USER", "ADMIN", "GUEST", "BASIC", "PRO"]).optional(),
+    isActive: z.coerce.boolean().optional(),
+  })
+);
+
+export const eventFilterSchema = z.object({
+  status: z.enum(["UPCOMING", "LIVE", "PAST"]).optional(),
+  mode: z.enum(["ONLINE", "ONSITE"]).optional(),
+  startsAt: dateRangeSchema.optional(),
+  amount: numberRangeSchema.optional(),
+});
+```
+
+Usage example:
+```ts
+const params = {
+  page: "1",
+  limit: "10",
+  search: "john",
+  role: "USER",
+  isActive: "true",
+};
+
+const validated = userQuerySchema.parse(params);
+
+const result = await queryBuilder({
+  model: prisma.user,
+  page: validated.page,
+  limit: validated.limit,
+  search: validated.search,
+  searchFields: ["email", "username", "firstName", "lastName"],
+  filters: {
+    role: validated.role,
+    isActive: validated.isActive,
+  },
+});
+```
+
+### Source Files
+`src/filters.examples.ts`  
+`src/validation.examples.ts`
+
 ## Contributing
-See `CONTRIBUTING.md`.
+Contributions are welcome and appreciated. To keep things smooth:
+1. Read `CONTRIBUTING.md` for setup, coding standards, and PR guidance.
+2. Run tests before submitting (`npm run test`).
+3. Keep changes focused and add/update docs when behavior changes.
+
+If you're unsure about a change, open an issue or start a discussion first.
 
 ## License
-MIT
+MIT License. See `LICENSE` for details.
 
 ## Author
-MANOJ KUMAR (Software Engineer) - Websyro
-
+Manoj Kumar (Software Engineer) - Websyro  
 LinkedIn: `https://www.linkedin.com/in/manojofficialmj/`
