@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Organization {
+  id       String @id @default(cuid())
+  name     String
+  isActive Boolean @default(true)
+  users    User[]
+
+  @@index([isActive])
+}
+
+model User {
+  id             String        @id @default(cuid())
+  email          String        @unique
+  name           String
+  isActive       Boolean       @default(true)
+  createdAt      DateTime      @default(now())
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  posts          Post[]
+  sessions       Session[]
+  orders         Order[]
+
+  @@index([createdAt])
+  @@index([isActive])
+  @@index([organizationId])
+}
+
+model Post {
+  id     String @id @default(cuid())
+  title  String
+  status String
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@index([status])
+  @@index([userId])
+}
+
+model Session {
+  id       String @id @default(cuid())
+  isActive Boolean @default(false)
+  userId   String
+  user     User   @relation(fields: [userId], references: [id])
+
+  @@index([isActive])
+  @@index([userId])
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  amount    Int
+  status    String
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([userId])
+}

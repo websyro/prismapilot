@@ -933,7 +933,9 @@ Contributions are welcome and appreciated. To keep things smooth:
 1. Read `CONTRIBUTING.md` for setup, coding standards, and PR guidance.
 2. Run tests before submitting (`npm run test`).
 3. Optional integration tests: `npm run test:integration` (SQLite).
-4. Keep changes focused and add/update docs when behavior changes.
+4. Optional PostgreSQL integration tests: `DATABASE_URL=... npm run test:integration:pg` (Docker).
+   You can also set `DATABASE_URL` in a `.env` file.
+5. Keep changes focused and add/update docs when behavior changes.
 
 If you're unsure about a change, open an issue or start a discussion first.
 
@@ -943,4 +945,5 @@ MIT License. See `LICENSE` for details.
 ## Author
 Manoj Kumar (Software Engineer) - Websyro  
 LinkedIn: `https://www.linkedin.com/in/manojofficialmj/`
+
 

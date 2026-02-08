@@ -2,6 +2,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
+    include: ['src/__tests__/**/*.test.ts'],
     globals: true,
     environment: 'node',
     coverage: {
@@ -23,3 +24,5 @@ export default defineConfig({
     setupFiles: ['./src/__tests__/query-builder.test.ts'],
   },
 });
+
+

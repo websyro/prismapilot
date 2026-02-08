@@ -1,106 +1,110 @@
 {
-    "name":  "@websyro/prismapilot",
-    "version":  "1.0.2",
-    "description":  "Universal query builder for Prisma with search, filter, sort, and pagination. Works with ANY Prisma schema!",
-    "main":  "./dist/index.js",
-    "module":  "./dist/index.mjs",
-    "types":  "./dist/index.d.ts",
-    "exports":  {
-                    ".":  {
-                              "types":  "./dist/index.d.ts",
-                              "import":  "./dist/index.mjs",
-                              "require":  "./dist/index.js"
-                          },
-                    "./advanced":  {
-                                       "types":  "./dist/advanced-features.d.ts",
-                                       "import":  "./dist/advanced-features.mjs",
-                                       "require":  "./dist/advanced-features.js"
-                                   },
-                    "./package.json":  "./package.json"
-                },
-    "files":  [
-                  "dist",
-                  "README.md",
-                  "LICENSE",
-                  "CHANGELOG.md"
-              ],
-    "scripts":  {
-                    "build":  "tsup",
-                    "dev":  "tsup --watch",
-                    "prepublishOnly":  "npm run build",
-                    "test":  "vitest run",
-                    "test:watch":  "vitest",
-                    "test:coverage":  "vitest run --coverage",
-                    "lint":  "eslint src --ext .ts",
-                    "lint:fix":  "eslint src --ext .ts --fix",
-                    "format":  "prettier --write \"src/**/*.ts\"",
-                    "format:check":  "prettier --check \"src/**/*.ts\"",
-                    "typecheck":  "tsc --noEmit",
-                    "release":  "npm run build \u0026\u0026 npm publish",
-                    "release:dry":  "npm run build \u0026\u0026 npm publish --dry-run",
-                    "test:integration":  "node scripts/run-integration-tests.mjs"
-                },
-    "keywords":  [
-                     "prisma",
-                     "prismapilot",
-                     "websyro",
-                     "query-builder",
-                     "pagination",
-                     "cursor-pagination",
-                     "search",
-                     "filter",
-                     "sort",
-                     "postgresql",
-                     "mysql",
-                     "sqlite",
-                     "mongodb",
-                     "database",
-                     "orm",
-                     "typescript",
-                     "type-safe",
-                     "zod",
-                     "validation",
-                     "rest-api",
-                     "graphql",
-                     "nextjs",
-                     "node",
-                     "backend"
-                 ],
-    "author":  "Websyro",
-    "license":  "MIT",
-    "repository":  {
-                       "type":  "git",
-                       "url":  "https://github.com/websyro/prismapilot.git"
-                   },
-    "bugs":  {
-                 "url":  "https://github.com/websyro/prismapilot/issues"
-             },
-    "homepage":  "https://github.com/websyro/prismapilot#readme",
-    "peerDependencies":  {
-                             "@prisma/client":  "\u003e=5.0.0"
-                         },
-    "dependencies":  {
-                         "zod":  "^3.24.1"
-                     },
-    "devDependencies":  {
-                            "@prisma/client":  "^7.3.0",
-                            "@types/node":  "^22.10.5",
-                            "@typescript-eslint/eslint-plugin":  "^8.19.1",
-                            "@typescript-eslint/parser":  "^8.19.1",
-                            "@vitest/coverage-v8":  "^2.1.8",
-                            "eslint":  "^8.57.0",
-                            "prettier":  "^3.4.2",
-                            "tsup":  "^8.3.5",
-                            "typescript":  "^5.9.3",
-                            "vitest":  "^2.1.8",
-                            "prisma":  "^7.3.0",
-                            "@prisma/adapter-better-sqlite3":  "^7.3.0",
-                            "better-sqlite3":  "^11.10.0"
-                        },
-    "engines":  {
-                    "node":  "\u003e=18.0.0"
-                },
-    "publishConfig":  {
-                          "access":  "public"
-                      }
+    "name": "@websyro/prismapilot",
+    "version": "1.0.2",
+    "description": "Universal query builder for Prisma with search, filter, sort, and pagination. Works with ANY Prisma schema!",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js"
+        },
+        "./advanced": {
+            "types": "./dist/advanced-features.d.ts",
+            "import": "./dist/advanced-features.mjs",
+            "require": "./dist/advanced-features.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE",
+        "CHANGELOG.md"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "prepublishOnly": "npm run build",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "lint": "eslint src --ext .ts",
+        "lint:fix": "eslint src --ext .ts --fix",
+        "format": "prettier --write \"src/**/*.ts\"",
+        "format:check": "prettier --check \"src/**/*.ts\"",
+        "typecheck": "tsc --noEmit",
+        "release": "npm run build && npm publish",
+        "release:dry": "npm run build && npm publish --dry-run",
+        "test:integration": "node scripts/run-integration-tests.mjs",
+        "test:integration:pg": "node scripts/run-integration-tests-postgres.mjs"
+    },
+    "keywords": [
+        "prisma",
+        "prismapilot",
+        "websyro",
+        "query-builder",
+        "pagination",
+        "cursor-pagination",
+        "search",
+        "filter",
+        "sort",
+        "postgresql",
+        "mysql",
+        "sqlite",
+        "mongodb",
+        "database",
+        "orm",
+        "typescript",
+        "type-safe",
+        "zod",
+        "validation",
+        "rest-api",
+        "graphql",
+        "nextjs",
+        "node",
+        "backend"
+    ],
+    "author": "Websyro",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/websyro/prismapilot.git"
+    },
+    "bugs": {
+        "url": "https://github.com/websyro/prismapilot/issues"
+    },
+    "homepage": "https://github.com/websyro/prismapilot#readme",
+    "peerDependencies": {
+        "@prisma/client": ">=5.0.0"
+    },
+    "dependencies": {
+        "zod": "^3.24.1"
+    },
+    "devDependencies": {
+        "@prisma/adapter-better-sqlite3": "^7.3.0",
+        "@prisma/adapter-pg": "^7.3.0",
+        "@prisma/client": "^7.3.0",
+        "@types/node": "^22.10.5",
+        "@typescript-eslint/eslint-plugin": "^8.19.1",
+        "@typescript-eslint/parser": "^8.19.1",
+        "@vitest/coverage-v8": "^2.1.8",
+        "better-sqlite3": "^11.10.0",
+        "dotenv": "^17.2.4",
+        "eslint": "^8.57.0",
+        "pg": "^8.18.0",
+        "prettier": "^3.4.2",
+        "prisma": "^7.3.0",
+        "tsup": "^8.3.5",
+        "typescript": "^5.9.3",
+        "vitest": "^2.1.8"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }
