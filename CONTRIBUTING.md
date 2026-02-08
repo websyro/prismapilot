@@ -2,6 +2,8 @@
 
 Thanks for your interest in contributing. This project aims to keep the core API generic and reusable for any Prisma schema.
 
+Current verified database support: PostgreSQL and SQLite. Other Prisma providers may work but are not currently validated in this project.
+
 ## Guidelines
 - Keep the public API generic and schema-agnostic.
 - Domain-specific logic should go into example files.

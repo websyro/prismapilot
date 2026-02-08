@@ -29,10 +29,12 @@ The format is based on Keep a Changelog and this project adheres to Semantic Ver
 - Webhook integration
 - GroupBy aggregation helper
 
-### Database Support
+### Database Support (Verified)
 - PostgreSQL
-- MySQL
 - SQLite
+
+### Database Support (Unverified)
+- MySQL
 - MongoDB
 - CockroachDB
 

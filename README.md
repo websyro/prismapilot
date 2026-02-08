@@ -2,6 +2,8 @@
 
 A generic, schema-agnostic query builder for Prisma. It provides pagination, search, filters, sorting, and optional helpers while keeping the public API clean and reusable across projects.
 
+**Current official support:** SQLite and PostgreSQL (tested). Other Prisma providers may work but are not currently validated in this project.
+
 ## Features
 - Works with any Prisma model
 - Offset and cursor pagination
