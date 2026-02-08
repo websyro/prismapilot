@@ -25,3 +25,6 @@ Thumbs.db
 
 # Misc
 *.tsbuildinfo
+
+# Integration tests
+/tests/integration/test.db
