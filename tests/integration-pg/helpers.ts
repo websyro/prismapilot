@@ -31,6 +31,7 @@ export async function seedBasicData() {
             email: "john@example.com",
             name: "John",
             isActive: true,
+            tenantId: "tenant_1",
             posts: {
               create: [
                 { title: "Hello", status: "PUBLISHED" },
@@ -42,7 +43,7 @@ export async function seedBasicData() {
             },
             orders: {
               create: [
-                { amount: 1000, status: "PAID" },
+                { amount: 1000, status: "PAID", tenantId: "tenant_1" },
                 { amount: 2000, status: "PENDING" },
               ],
             },
@@ -51,6 +52,7 @@ export async function seedBasicData() {
             email: "jane@example.com",
             name: "Jane",
             isActive: false,
+            tenantId: "tenant_2",
             posts: {
               create: [{ title: "Post", status: "PUBLISHED" }],
             },
@@ -58,13 +60,23 @@ export async function seedBasicData() {
               create: [{ isActive: true }],
             },
             orders: {
-              create: [{ amount: 500, status: "PAID" }],
+              create: [{ amount: 500, status: "PAID", tenantId: "tenant_2" }],
             },
           },
         ],
       },
     },
     include: { users: true },
+  });
+
+  await prisma.user.create({
+    data: {
+      email: "deleted@example.com",
+      name: "Deleted",
+      isActive: true,
+      tenantId: "tenant_1",
+      deletedAt: new Date(),
+    },
   });
 
   return { org };

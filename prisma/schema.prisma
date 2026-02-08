@@ -18,6 +18,8 @@ model User {
   email          String        @unique
   name           String
   isActive       Boolean       @default(true)
+  tenantId       String?
+  deletedAt      DateTime?
   createdAt      DateTime      @default(now())
   organizationId String?
   organization   Organization? @relation(fields: [organizationId], references: [id])
@@ -45,6 +47,8 @@ model Order {
   id        String   @id @default(cuid())
   amount    Int
   status    String
+  tenantId  String?
+  deletedAt DateTime?
   createdAt DateTime @default(now())
   userId    String
   user      User     @relation(fields: [userId], references: [id])

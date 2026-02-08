@@ -189,7 +189,7 @@ export function buildSoftDeleteFilter(options?: {
     return { [deletedAtField]: { not: null } };
   }
 
-  return { [deletedAtField]: null };
+  return { [deletedAtField]: { equals: null } };
 }
 
 /**
